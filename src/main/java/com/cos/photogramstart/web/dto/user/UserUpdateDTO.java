@@ -4,11 +4,15 @@ import com.cos.photogramstart.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+
 @Data
 public class UserUpdateDTO {
 
+    @NotBlank
     private String name; //필수
 
+    @NotBlank
     private String password; //필수
 
     private String website;
