@@ -1,5 +1,6 @@
 package com.cos.photogramstart.service;
 
+import com.cos.photogramstart.domain.subscribe.Subscribe;
 import com.cos.photogramstart.domain.subscribe.SubscribeRepository;
 import com.cos.photogramstart.handler.ex.CustomApiException;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ public class SubscribeService {
 
         try{
             subscribeRepository.mSubscribe(fromUserId, toUserId);
+
         }catch (Exception e){
             throw new CustomApiException("이미 구독중 입니다.");
         }

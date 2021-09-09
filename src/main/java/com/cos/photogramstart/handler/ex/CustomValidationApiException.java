@@ -6,7 +6,6 @@ public class CustomValidationApiException extends RuntimeException{
 
     private static final long serialVersionUID=1L;
 
-
     private Map<String,String> errorMap;
 
     public CustomValidationApiException(String message){
