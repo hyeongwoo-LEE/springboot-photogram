@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
+@ToString(exclude = {"user"})
 @Entity
 public class Image {
 

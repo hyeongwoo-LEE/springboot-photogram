@@ -14,6 +14,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class ImageUploadDTO {
 
+    //@MultipartFile -> Vaild 사용 x
     private MultipartFile file;
 
     @NotBlank

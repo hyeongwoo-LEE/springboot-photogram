@@ -7,6 +7,7 @@ import com.cos.photogramstart.web.dto.image.ImageUploadDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -24,6 +25,7 @@ public class ImageService {
 
     private final ImageRepository imageRepository;
 
+    @Transactional
     public void 사진업로드(ImageUploadDTO imageUploadDTO, PrincipalDetails principalDetails){
 
         UUID uuid = UUID.randomUUID();
@@ -46,9 +48,9 @@ public class ImageService {
         //image 테이블에 저장
         Image image = imageUploadDTO.toEntity(imageFilename, principalDetails.getUser());
 
-        Image save = imageRepository.save(image);
+        imageRepository.save(image);
 
-        System.out.println(save);
+
 
     }
 

@@ -1,6 +1,8 @@
 package com.cos.photogramstart.web;
 
 import com.cos.photogramstart.config.auth.PrincipalDetails;
+import com.cos.photogramstart.handler.ex.CustomValidationApiException;
+import com.cos.photogramstart.handler.ex.CustomValidationException;
 import com.cos.photogramstart.service.ImageService;
 import com.cos.photogramstart.web.dto.image.ImageUploadDTO;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +35,10 @@ public class ImageController {
     @PostMapping("/image")
     public String imageUpload(ImageUploadDTO imageUploadDTO,
                               @AuthenticationPrincipal PrincipalDetails principalDetails){
+
+        if(imageUploadDTO.getFile().isEmpty()){
+            throw new CustomValidationException("이미지가 첨부되지 않았습니다.", null);
+        }
 
         imageService.사진업로드(imageUploadDTO, principalDetails);
 
