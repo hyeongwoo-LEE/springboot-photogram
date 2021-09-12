@@ -53,8 +53,6 @@ public class User {
     @JsonIgnoreProperties({"user"})
     private List<Image> images; //양방향 매핑
 
-
-
     private LocalDateTime createDate;
 
     @PrePersist //디비에 insert 되기 직전에 실행

@@ -3,11 +3,15 @@ package com.cos.photogramstart.web.api;
 import com.cos.photogramstart.config.auth.PrincipalDetails;
 import com.cos.photogramstart.service.SubscribeService;
 import com.cos.photogramstart.web.dto.CMRespDTO;
+import com.cos.photogramstart.web.dto.subscribe.SubscribeDTO;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
