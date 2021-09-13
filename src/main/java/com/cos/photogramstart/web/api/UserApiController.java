@@ -36,7 +36,7 @@ public class UserApiController {
 
         List<SubscribeDTO> subscribeDTO = subscribeService.구독리스트(principalDetails.getUser().getId(), pageUserId);
 
-        return new ResponseEntity<>(new CMRespDTO<>(1, "구독", subscribeDTO), HttpStatus.OK);
+        return new ResponseEntity<>(new CMRespDTO<>(1, "구독자 정보 리스트 가져오기 성공", subscribeDTO), HttpStatus.OK);
 
     }
 
