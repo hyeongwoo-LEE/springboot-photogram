@@ -52,7 +52,6 @@ function subscribeInfoModalOpen(pageUserId) {
 		dataType: "json"
 	}).done(res => {
 		console.log(res.data);
-
 		res.data.forEach((u) => {
 			let item = getSubscribeModalItem(u);
 			$("#subscribeModalList").append(item);
@@ -65,7 +64,7 @@ function subscribeInfoModalOpen(pageUserId) {
 
 function getSubscribeModalItem(u) {
 
-	let item = `<div class="subscribe__item" id="subscribeModalItem-${u.id}">
+	let item = `<div class="subscribe__item" id="subscribeModalItem-${u.userId}">
 	<div class="subscribe__img">
 		<img src="/upload/${u.profileImageUrl}" onerror="this.src='/images/person.jpeg'"/>
 	</div>
@@ -76,9 +75,9 @@ function getSubscribeModalItem(u) {
 
 	if (!u.equalUserState) { //동일 유저가 아닐 때 버튼이 만들어져야함
 		if (u.subscribeState) { //구동한 상태
-			item += `<button class="cta blue" onclick="toggleSubscribe(${u.id},this)">구독취소</button>`;
+			item += `<button class="cta blue" onclick="toggleSubscribe(${u.userId},this)">구독취소</button>`;
 		} else { //구동안한 상태
-			item += `<button class="cta" onclick="toggleSubscribe(${u.id},this)">구독하기</button>`;
+			item += `<button class="cta" onclick="toggleSubscribe(${u.userId},this)">구독하기</button>`;
 		}
 
 
