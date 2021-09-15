@@ -57,7 +57,7 @@ function subscribeInfoModalOpen(pageUserId) {
 			$("#subscribeModalList").append(item);
 		});
 	}).fail(error => {
-		console.log("구독정보 불러오기 오류", error);
+		console.log("구독정보 불러오기 오류", error.text);
 	});
 }
 
@@ -66,21 +66,20 @@ function getSubscribeModalItem(u) {
 
 	let item = `<div class="subscribe__item" id="subscribeModalItem-${u.userId}">
 	<div class="subscribe__img">
-		<img src="/upload/${u.profileImageUrl}" onerror="this.src='/images/person.jpeg'"/>
+		<img src="/upload/${u.profileImageUrl}" alt="" onerror="this.src='/images/person.jpeg'"/>
 	</div>
 	<div class="subscribe__text">
 		<h2>${u.username}</h2>
 	</div>
 	<div class="subscribe__btn">`;
 
-	if (!u.equalUserState) { //동일 유저가 아닐 때 버튼이 만들어져야함
-		if (u.subscribeState) { //구동한 상태
-			item += `<button class="cta blue" onclick="toggleSubscribe(${u.userId},this)">구독취소</button>`;
-		} else { //구동안한 상태
-			item += `<button class="cta" onclick="toggleSubscribe(${u.userId},this)">구독하기</button>`;
+	if (!u.equalState) {
+		if (u.subscribeState) {
+			item += `<button class="cta blue" onclick="toggleSubscribe(${u.userId}, this)">구독취소</button>`;
+		} else {
+			item += `<button class="cta" onclick="toggleSubscribe(${u.userId}, this)">구독하기</button>`;
 		}
-
-
+	}
 		item += `
 	</div>
 </div>`;
@@ -134,7 +133,6 @@ function getSubscribeModalItem(u) {
 	function modalClose() {
 		$(".modal-subscribe").css("display", "none");
 		location.reload();
-	}
 }
 
 

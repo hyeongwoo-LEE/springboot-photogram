@@ -1,5 +1,7 @@
-package com.cos.photogramstart.domain.image;
+package com.cos.photogramstart.domain.likes;
 
+
+import com.cos.photogramstart.domain.image.Image;
 import com.cos.photogramstart.domain.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
@@ -7,40 +9,41 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString(exclude = {"user"})
+@Table(
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name="likes_uk", //유니크 제약조건 이름
+                        columnNames = {"imageId","userId"}
+                )
+        }
+)
 @Entity
-public class Image {
+public class Likes {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String caption; //오늘 나 너무 피곤해!
+    @JoinColumn(name="ImageId")
+    @ManyToOne
+    private Image image;
 
-    private String postImageUrl; // 사진을 전송받아서 그 사진을 서버에 특정 폴더에 저장 - DB에 저장된 경로를 insert
 
-    @JsonIgnoreProperties({"images"})
-    @JoinColumn(name = "userId")
+    //@JsonIgnoreProperties
+    @JoinColumn(name="userId")
     @ManyToOne
     private User user;
 
-    // 이미지 좋아요
-
-    // 댓글
-
     private LocalDateTime createDate;
-
 
     @PrePersist //디비에 insert 되기 직전에 실행
     public void createDate(){
         this.createDate = LocalDateTime.now();
     }
-
-
 
 }

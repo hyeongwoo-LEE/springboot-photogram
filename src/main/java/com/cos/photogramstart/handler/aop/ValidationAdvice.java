@@ -15,7 +15,7 @@ import java.util.Map;
 @Component
 @Aspect
 public class ValidationAdvice {
-
+/*
     @Around("execution(* com.cos.photogramstart.web.api.*Controller.*(..))")
     public Object apiAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 
@@ -63,5 +63,5 @@ public class ValidationAdvice {
 
         return proceedingJoinPoint.proceed();
     }
-
+*/
 }
