@@ -17,6 +17,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -29,6 +30,18 @@ public class UserApiController {
 
     private final UserService userService;
     private final SubscribeService subscribeService;
+
+    @PutMapping("/api/user/{principalId}/profileImageUrl")
+    public ResponseEntity<?> profileImageUrlUpdate(@PathVariable int principalId,
+                                                   MultipartFile profileImageFile,
+                                                   @AuthenticationPrincipal PrincipalDetails principalDetails){
+
+        User userEntity = userService.회원프로필사진변경(principalId, profileImageFile);
+
+        principalDetails.setUser(userEntity); //세션 변경
+
+        return new ResponseEntity<>(new CMRespDTO<>(1, "프로필 사진 변경 성공", null), HttpStatus.OK);
+    }
 
     @GetMapping("/api/user/{pageUserId}/subscribe")
     public ResponseEntity<CMRespDTO<?>> subscribeList(@PathVariable int pageUserId,

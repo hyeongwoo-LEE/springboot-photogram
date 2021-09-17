@@ -9,6 +9,9 @@ import java.util.List;
 
 public interface ImageRepository extends JpaRepository<Image, Integer> {
 
+    @Query(value = "SELECT i.* FROM image i JOIN likes l ON i.id = l.ImageId GROUP BY i.id ORDER BY COUNT(i.id) desc", nativeQuery = true)
+    List<Image> mPopular();
+
     @Query(value = "select * from image where userId in(select toUserId from subscribe where fromUserId = :principalId) order by id DESC ", nativeQuery = true)
     Page<Image> mStory(int principalId, Pageable pageable);
 
