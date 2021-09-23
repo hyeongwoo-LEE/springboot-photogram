@@ -36,7 +36,20 @@ spring:
   security:
     user:
       name: test
-      password: 1234   
+      password: 1234
+    oauth2:
+      client:
+        registration:
+          facebook:
+            client-id: 184040120508185
+            client-secret: eace38bb027a9265743e4efb59fb2a77
+            scope:
+            - public_profile
+            - email
+
+
 
 file:
   path: C:/upload/photogram/
+
+
