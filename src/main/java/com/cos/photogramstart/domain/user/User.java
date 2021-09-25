@@ -21,7 +21,7 @@ public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false, length = 20, unique = true)
+    @Column(nullable = false, length = 100, unique = true) //OAuth2 로그인을 위해 칼럼 길이 늘리기
     private String username;
 
     @Column(nullable = false)
